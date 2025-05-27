@@ -1,24 +1,24 @@
 # Kitboga Code Jam
 "I'm not a robot!"
 
-This GitHub respository contains a template you should fork, modify to include your captcha, and then submit to us. Please read all the information in this readme before getting started!
+This GitHub repository contains a template you should fork, modify to include your captcha, and then submit to us. Please read all the information in this readme before getting started!
 **The deadline for submissions is 27th June 2025!**
 
 ## Rules
 1. Follow the guidelines in index.html as to where and how your code should be written.
 2. It goes without saying, but no malicious code. We want to frustrate and anger scammers, but it's no fun if we just crash their browser, and we're not interested in doing anything illegal. Specifically:
-- No resource-hogs
-- No crypto mining
-- No fork bombs or similar
-- No attempting to reveal their personal informatiopn
-- No exploits
-- No payload deployment
-- No attempts to collect or display personal information
+    - No resource-hogs
+    - No crypto mining
+    - No fork bombs or similar
+    - No attempting to reveal their personal information
+    - No exploits
+    - No payload deployment
+    - No attempts to collect or display personal information
 3. Please try to match the tone of the Kitboga community. You are very unlikely to be selected if your submission contains:
-- Bad language (this will spook a scammer right away)
-- Racism, or basically any other -ism
-- Vulgarity or anything NSFW
-- Anything which would violate the Twitch or YouTube TOS. If you are unsure where this line is, then better to stay on the safe side.
+    - Bad language (this will spook a scammer right away)
+    - Racism, or basically any other -ism
+    - Vulgarity or anything NSFW
+    - Anything which would violate the Twitch or YouTube TOS. If you are unsure where this line is, then better to stay on the safe side.
 4. Please don't use copyrighted logos or brand names in your submission. If you have an idea for something incredible which only works with a particular brand, check with us in Discord.
 5. No obfuscation. If we can't read or understand the code, we're probably not going to run it.
 6. No requests for resources outside of your repository. Include all the assets you need in your repository, including any JS libraries, fonts, icons and everything else. If you have a specific idea which requires access to the Internet, perhaps to fetch live stock market data for example, then try to fake it. If it's important to you to make external requests, talk to us about it in Discord.
