@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Joel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style type="text/css">
+    html,
+    body {
+      background: pink;
+      margin: 0;
+      padding: 0;
+    }
+
+    #captcha-container {
+      background: white;
+      width: 400px;
+      height: 300px;
+    }
+
+    /* Your style here... */
+  </style>
+</head>
+
+<body>
+  <div id="captcha-container">
+    <!-- Add your CAPTCHA here: -->
+    Hello world!
+  </div>
+
+  <script type="text/javascript">
+    // You must keep this function expression, and ensure your code runs entirely within it. You are welcome to import other scripts and assets from inside this repository,
+    // so long as it all happens within this function expression.
+    (function(window, document){
+      // This is how you tell the parent window that the CAPTCHA was successful.
+      function captchaSuccess() {
+        window.top.postMessage("success", '*');
+      }
+      
+      // Your captcha code here...
+      captchaSuccess(); // Call this function when the CAPTCHA is successfully solved.
+
+    })(window, document);
+  </script>
+</body>
+</html>
