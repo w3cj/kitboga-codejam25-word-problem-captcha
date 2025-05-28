@@ -25,6 +25,13 @@ This GitHub repository contains a template you should fork, modify to include yo
 7. When submitting your code, please tell us about every feature, even "easter eggs". No surprises!
 8. WebAssembly and Web Workers are okay, if you really need them, provided that you include the source code and instructions on how to build it. No binaries please.
 
+## Getting Started
+1. Create a GitHub repository from the template: https://github.com/new?template_name=codejam25&template_owner=The-Kitboga-Show
+2. Clone the new repository locally to your machine.
+3. Run the command in the terminal to start a web server: `python3 -m http.server 8000`
+4. Open [http://localhost:8000](http://localhost:8000) in your browser.
+5. Create your game in `captcha/index.html`!
+
 ## Advice
 1. Scammers are often using iPhones, so make sure your CAPTCHA works properly in that format. They also use desktops, usually with Chrome or Edge, so it's a good idea to make sure it works well in a desktop format also.
 
