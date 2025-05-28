@@ -27,10 +27,16 @@
   <div id="captcha-container">
     <!-- Add your CAPTCHA here: -->
     Hello world!
+
+    <!-- We've added a sample button. Feel free to remove it: -->
+    <button id="solve">
+      Solve!
+    </button>
   </div>
 
   <script type="text/javascript">
-    // You must keep this function expression, and ensure your code runs entirely within it. You are welcome to import other scripts and assets from inside this repository,
+    // You must keep this function expression, and ensure your code runs entirely within it.
+    // You are welcome to import other scripts and assets from inside this repository,
     // so long as it all happens within this function expression.
     (function(window, document){
       // This is how you tell the parent window that the CAPTCHA was successful.
@@ -38,8 +44,9 @@
         window.top.postMessage("success", '*');
       }
       
-      // Your captcha code here...
-      captchaSuccess(); // Call this function when the CAPTCHA is successfully solved.
+      // Your CAPTCHA code goes here, we've added a simple example below:
+      document.getElementById('solve')
+           .addEventListener('click', () => captchaSuccess());
 
     })(window, document);
   </script>
