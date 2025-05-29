@@ -176,7 +176,7 @@
 </head>
 <body>
 <div id="dev-success-message" class="invisible">
-    CAPTCHA completed! Refresh the page to start over.
+    CAPTCHA completed! The page will reload in 1 second...
 </div>
 
 <!-- This code represents what the "game shell" may appear as, but is no guarantee of the final game container. -->
@@ -244,6 +244,11 @@
         checkmarkEl.classList.remove('hidden');
         loaderCheckboxEl.classList.add('hidden');
         devSuccessEl.classList.remove('invisible');
+        gameWrapperEl.classList.add('hidden');
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     })
   })(window, document);
