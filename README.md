@@ -36,7 +36,7 @@ https://discord.com/kitboga
 3. Open the "game shell" in your browser; this can be done in 2 ways:
    - By opening `index.html` directly in your browser
    - By running a local webserver (this can help with testing on different devices too). One easy way to do this, if you have python installed, is to run this command in the terminal: `python3 -m http.server 8000`. Then open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser (the port may vary if you used a different method to start a web server).
-4. Create your game in `captcha/captcha.html`!
+4. Create your game in `captcha/captcha.html`! All parts of your submission should be in the `captcha/` folder.
 5. Commit and push your changes
 6. See the "How to Submit" section below
 
