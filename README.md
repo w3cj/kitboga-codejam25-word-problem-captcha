@@ -47,6 +47,8 @@ https://discord.com/kitboga
 
 3. If you want to go the extra mile, having some configuration in the code which increases or decreases the difficulty could be a nice touch.
 
+4. We will prefer human-generated content. Feel free to use some AI during development, but don't just ask it to come up with and create an idea.
+
 ## Forbidden APIs and functions
 Please don't use any of the following:
 - navigator.geolocation
