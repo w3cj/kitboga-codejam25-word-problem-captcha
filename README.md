@@ -33,7 +33,8 @@ https://discord.com/kitboga
 1. Create a GitHub repository from the template: https://github.com/new?template_name=codejam25&template_owner=The-Kitboga-Show
 2. Clone the new repository locally to your machine
 3. Run the command in the terminal to start a web server: `python3 -m http.server 8000`
-4. Open [http://localhost:8000](http://localhost:8000) in your browser
+3. You can test out your code by starting a local web server. One easy way to do this, if you have python installed, is to run this command in the terminal: `python3 -m http.server 8000`
+4. Open [http://localhost:8000](http://localhost:8000) in your browser (the port may vary if you used a different method to start a web server)
 5. Create your game in `captcha/captcha.html`!
 6. Commit and push your changes
 7. See the "How to Submit" section below
