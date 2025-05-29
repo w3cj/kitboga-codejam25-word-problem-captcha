@@ -41,7 +41,7 @@
       function captchaSuccess() {
         window.top.postMessage("success", '*');
       }
-      
+
       // Your CAPTCHA code goes here, we've added a simple example below:
       document.getElementById('solve')
            .addEventListener('click', () => captchaSuccess());
