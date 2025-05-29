@@ -32,15 +32,15 @@ https://discord.com/kitboga
 ## Getting Started
 1. Create a GitHub repository from the template: https://github.com/new?template_name=codejam25&template_owner=The-Kitboga-Show
 2. Clone the new repository locally to your machine
-3. Run the command in the terminal to start a web server: `python3 -m http.server 8000`
-3. You can test out your code by starting a local web server. One easy way to do this, if you have python installed, is to run this command in the terminal: `python3 -m http.server 8000`
-4. Open [http://localhost:8000](http://localhost:8000) in your browser (the port may vary if you used a different method to start a web server)
-5. Create your game in `captcha/captcha.html`!
-6. Commit and push your changes
-7. See the "How to Submit" section below
+3. Open the "game shell" in your browser; this can be done in 2 ways:
+   - By opening `index.html` directly in your browser
+   - By running a local webserver (this can help with testing on different devices too). One easy way to do this, if you have python installed, is to run this command in the terminal: `python3 -m http.server 8000`. Then open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser (the port may vary if you used a different method to start a web server).
+4. Create your game in `captcha/captcha.html`!
+5. Commit and push your changes
+6. See the "How to Submit" section below
 
 ## Advice
-1. Scammers are often using iPhones, so make sure your CAPTCHA works properly in that format. They also use desktops, usually with Chrome or Edge, so it's a good idea to make sure it works well in a desktop format also.
+1. Scammers are often using iPhones, so make sure your CAPTCHA works properly in that format. They also use desktops, usually with Chrome or Edge, so it's a good idea to make sure it works well in a desktop format also. (See also [device mode on Chrome](https://developer.chrome.com/docs/devtools/device-mode/), or [responsive design mode on Firefox](https://firefox-source-docs.mozilla.org/devtools-user/responsive_design_mode/).)
 
 2. The best submissions will be ones which are fun to watch, and also irritating for the scammer. They should be designed so that the scammer finds them difficult or confusing to complete, but they should eventually be completable, within around 5 minutes. Having some element of skill (rather than only chance) is more likely to keep a scammer hooked and actively trying to pass your CAPTCHA.
 
@@ -50,7 +50,6 @@ https://discord.com/kitboga
 Please don't use any of the following:
 - navigator.geolocation
 - navigator.getUserMedia()
-- RTCPeerConnection
 - navigator.connection
 - navigator.clipboard
 - navigator.bluetooth
@@ -64,7 +63,8 @@ Please don't use any of the following:
 - window.print()
 - navigator.permissions
 - navigator.credentials
-- XMLHttpRequest, WebSocket, etc.
+- RTCPeerConnection
+- fetch, XMLHttpRequest, WebSocket, etc.
 
 ## Examples
 - [Crow Lifting Weights](https://courageousmayonnaise.github.io/codejam25-crow-lifting-weights/) ([source](https://github.com/CourageousMayonnaise/codejam25-crow-lifting-weights))
