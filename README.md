@@ -21,16 +21,22 @@ This GitHub repository contains a template you should fork, modify to include yo
     - Anything which would violate the Twitch or YouTube TOS. If you are unsure where this line is, then better to stay on the safe side.
 4. Please don't use copyrighted logos or brand names in your submission. If you have an idea for something incredible which only works with a particular brand, check with us in Discord.
 5. No obfuscation. If we can't read or understand the code, we're probably not going to run it.
-6. No requests for resources outside of your repository. Include all the assets you need in your repository, including any JS libraries, fonts, icons and everything else. If you have a specific idea which requires access to the Internet, perhaps to fetch live stock market data for example, then try to fake it. If it's important to you to make external requests, talk to us about it in Discord.
+6. No requests for resources outside of your repository, except for well-known javascript libraries from a CDN (jsdelivr, unpkg, googleapis, etc). Aside from these, include all the assets you need in your repository, such as fonts, icons and everything else. If you have a specific idea which requires access to the Internet, perhaps to fetch live stock market data for example, then try to fake it. If it's important to you to make external requests, talk to us about it in Discord.
 7. When submitting your code, please tell us about every feature, even "easter eggs". No surprises!
-8. WebAssembly and Web Workers are not allowed
+8. WebAssembly and Web Workers are not allowed.
+
+## Discord
+Please feel free to join the Kitboga discord, and hang out in the #code-jam channel. That's a great place to ask for help, and it will be useful if we need to contact you about your submission for whatever reason.
+https://discord.com/kitboga
 
 ## Getting Started
 1. Create a GitHub repository from the template: https://github.com/new?template_name=codejam25&template_owner=The-Kitboga-Show
-2. Clone the new repository locally to your machine.
+2. Clone the new repository locally to your machine
 3. Run the command in the terminal to start a web server: `python3 -m http.server 8000`
-4. Open [http://localhost:8000](http://localhost:8000) in your browser.
+4. Open [http://localhost:8000](http://localhost:8000) in your browser
 5. Create your game in `captcha/captcha.html`!
+6. Commit and push your changes
+7. See the "How to Submit" section below
 
 ## Advice
 1. Scammers are often using iPhones, so make sure your CAPTCHA works properly in that format. They also use desktops, usually with Chrome or Edge, so it's a good idea to make sure it works well in a desktop format also.
@@ -65,8 +71,13 @@ Please don't use any of the following:
 - Anti-Example: [Cube Game](https://courageousmayonnaise.github.io/codejam25-cube-game/) ([source](https://github.com/CourageousMayonnaise/codejam25-cube-game))
   - *Why is this an anti-example?* This game uses copyrighted material and is not an original creation. It also lacks a clear solution.
 
+## Prizes and Judging
+Entries will shortlisted by a panel of Kitboga Show team members, and will be judged subjectively based on originality, technical merit, entertainment value and style. The best will go forward to a final round where they will be tried with scammers live on-stream. There may be prizes, including things such as merch, signed items, and gift cards.
+
 ## How to submit
 **Remember, the deadline is 27th June 2025!**
+Don't forget to read the license in TERMS.md, which you'll need to agree to in order to take part.
+
 Go here: https://kitboga.com/codejam
 
 ## Further help
