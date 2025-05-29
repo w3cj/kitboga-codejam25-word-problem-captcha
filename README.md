@@ -84,5 +84,8 @@ Don't forget to read the license in TERMS.md, which you'll need to agree to in o
 
 Go here: https://kitboga.com/codejam
 
+## (Optional) Live Demo
+Add a publicly viewable demo for your CAPTCHA by enabling GitHub Pages in your repository settings. Navigate to `Settings` > `Pages`, then under `Branch`, select `main`, and then press `Save`. Once the site is built the URL will appear.
+
 ## Further help
 Drop into the Kitboga discord server, and check out the #code-jam channel. Please don't ask questions via email, as we might not see them before the deadline.
