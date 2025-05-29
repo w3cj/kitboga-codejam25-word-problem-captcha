@@ -40,9 +40,10 @@ Participation in the Competition and eligibility to receive any prizes is subjec
 ---
 
 ### 7. Taxes and Legal Obligations
-Winners are solely responsible for any taxes, legal reporting, or other obligations resulting from receiving a prize.
+Winners are solely responsible for any taxes, legal reporting, or other obligations resulting from receiving a prize. Entrants should ensure that their local laws permit taking part.
 
 ---
 
 ### 8. Right to Modify or Cancel
 The Kitboga Show reserves the right to modify, suspend, or cancel the Competition at any time for any reason, including technical issues, fraud, or force majeure.
+
