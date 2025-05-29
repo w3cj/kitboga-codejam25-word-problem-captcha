@@ -62,7 +62,7 @@ Please don't use any of the following:
 ## Examples
 - [Crow Lifting Weights](https://courageousmayonnaise.github.io/codejam25-crow-lifting-weights/) ([source](https://github.com/CourageousMayonnaise/codejam25-crow-lifting-weights))
 - [Scratch Off Game](https://courageousmayonnaise.github.io/codejam25-scratch-off/) ([source](https://github.com/CourageousMayonnaise/codejam25-scratch-off))
-- Anti-Example: [Cube Game](hhttps://courageousmayonnaise.github.io/codejam25-cube-game/) ([source](https://github.com/CourageousMayonnaise/codejam25-cube-game))
+- Anti-Example: [Cube Game](https://courageousmayonnaise.github.io/codejam25-cube-game/) ([source](https://github.com/CourageousMayonnaise/codejam25-cube-game))
   - *Why is this an anti-example?* This game uses copyrighted material and is not an original creation. It also lacks a clear solution.
 
 ## How to submit
