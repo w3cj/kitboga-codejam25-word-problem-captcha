@@ -28,7 +28,7 @@ This GitHub repository contains a template you should fork, modify to include yo
 
 ## Discord
 Please feel free to join the Kitboga discord, and hang out in the #code-jam channel. That's a great place to ask for help, and it will be useful if we need to contact you about your submission for whatever reason.
-https://discord.com/kitboga
+https://discord.gg/kitboga
 
 ## Getting Started
 1. Create a GitHub repository from the template: https://github.com/new?template_name=codejam25&template_owner=The-Kitboga-Show
