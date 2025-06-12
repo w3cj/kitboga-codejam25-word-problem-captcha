@@ -25,6 +25,7 @@ This GitHub repository contains a template you should fork, modify to include yo
 7. When submitting your code, please tell us about every feature, even "easter eggs". No surprises!
 8. WebAssembly and Web Workers are not allowed.
 9. Do not include minified code; this includes code generated from build tools like Vite (see also [disabling minification](https://vite.dev/config/build-options#build-minify)) or WebPack. Prefer not using any build tools, if possible.
+10. Do not increase the size of the captcha, as it will be embedded in an iframe of the specific size 390px * 300px.
 
 ## Discord
 Please feel free to join the Kitboga discord, and hang out in the #code-jam channel. That's a great place to ask for help, and it will be useful if we need to contact you about your submission for whatever reason.
