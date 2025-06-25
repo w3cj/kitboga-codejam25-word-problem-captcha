@@ -1,0 +1,19 @@
+{
+  "problem": "Edna, famous for her meticulous \"Wait-a-Minute\" cookies, is sourcing ingredients for a large charity bake sale and has determined she needs exactly $TOTAL_BEANS_NEEDED$ special vanilla beans. Old Jebediah once mentioned his extravagant recipes used $JEBEDIAH_BEAN_COUNT$ beans per batch, but Edna is sticking to her known quantities. Her resourceful friend Bernice found a supplier selling these beans in packs of $PACK_SIZE$ each, with each pack costing $PACK_PRICE$. Because it's for charity, the supplier, a real angel, offered Edna a $DISCOUNT_PER_PACK$ discount on every full pack she purchases. If the store has $STORE_STOCK_PACKS$ packs and Nevaeh is busy planning the event's social media outreach with $NEVAEH_POST_COUNT$ posts, what will be Edna's total cost for the vanilla beans after applying her discount, assuming she only buys the necessary number of full packs?",
+  "variables": [
+    { "name": "TOTAL_BEANS_NEEDED", "label": "beans", "min": 100, "max": 500 },
+    { "name": "PACK_SIZE", "label": "beans", "min": 10, "max": 50 },
+    { "name": "PACK_PRICE", "min": 30, "max": 100, "format": "USD" },
+    { "name": "DISCOUNT_PER_PACK", "min": 2, "max": 15, "format": "USD" },
+    { "name": "JEBEDIAH_BEAN_COUNT", "label": "beans", "min": 50, "max": 200 },
+    { "name": "STORE_STOCK_PACKS", "label": "packs", "min": 20, "max": 100 },
+    { "name": "NEVAEH_POST_COUNT", "label": "posts", "min": 5, "max": 25 }
+  ],
+  "answer": [
+    ["TOTAL_BEANS_NEEDED", "DIVIDE", "PACK_SIZE"],
+    "MULTIPLY",
+    ["PACK_PRICE", "SUBTRACT", "DISCOUNT_PER_PACK"]
+  ],
+  "answer_format": "USD",
+  "answer_description": "<ol><li><strong>Calculate the number of packs needed:</strong> Edna needs $TOTAL_BEANS_NEEDED$ beans, and they come in packs of $PACK_SIZE$. <ul><li>$TOTAL_BEANS_NEEDED$ beans ÷ $PACK_SIZE$ beans/pack = <strong><span data-calculate=\"true\">[\"TOTAL_BEANS_NEEDED\", \"DIVIDE\", \"PACK_SIZE\"]</span> packs</strong>.</li></ul></li><li><strong>Calculate the discounted price per pack:</strong> Each pack costs $PACK_PRICE$, and Edna gets a $DISCOUNT_PER_PACK$ discount on each. <ul><li>$PACK_PRICE$ - $DISCOUNT_PER_PACK$ = <strong><span data-format=\"USD\" data-calculate=\"true\">[\"PACK_PRICE\", \"SUBTRACT\", \"DISCOUNT_PER_PACK\"]</span> per pack</strong>.</li></ul></li><li><strong>Calculate the total cost:</strong> Multiply the number of packs needed by the discounted price per pack. <ul><li><span data-calculate=\"true\">[\"TOTAL_BEANS_NEEDED\", \"DIVIDE\", \"PACK_SIZE\"]</span> packs × <span data-format=\"USD\" data-calculate=\"true\">[\"PACK_PRICE\", \"SUBTRACT\", \"DISCOUNT_PER_PACK\"]</span>/pack = <strong data-answer=\"true\"></strong>.</li></ul></li></ol>"
+}

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Joel</title>
+  <title>Word Problems</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style type="text/css">
@@ -20,19 +20,177 @@
       height: 300px;
     }
 
-    /* Your style here... */
+    #captcha-container {
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    .problem-text {
+      line-height: 1.4;
+      margin-bottom: 20px;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .answer-input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    .submit-btn {
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .submit-btn:hover {
+      background: #0056b3;
+    }
+
+    .submit-btn:disabled {
+      background: #6c757d;
+      color: #adb5bd;
+      cursor: not-allowed;
+    }
+
+    .submit-btn:disabled:hover {
+      background: #6c757d;
+    }
+
+    .next-btn {
+      background: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 15px;
+    }
+
+    .next-btn:hover {
+      background: #218838;
+    }
+
+    .answer-description {
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 15px 0;
+      color: #155724;
+    }
+
+    .error {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .success {
+      color: green;
+      margin-top: 10px;
+    }
+
+    .calculation-display {
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 4px;
+      padding: 15px;
+      margin: 15px 0;
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .variable-placeholder {
+      background: #e9ecef;
+      border: 1px solid #adb5bd;
+      border-radius: 3px;
+      padding: 2px 6px;
+      color: #495057;
+      font-weight: bold;
+    }
+
+    .variable-dropdown {
+      background: #e9ecef;
+      border: 1px solid #adb5bd;
+      border-radius: 3px;
+      padding: 2px 6px;
+      color: #495057;
+      font-weight: bold;
+      font-family: monospace;
+      font-size: 12px;
+      min-width: 80px;
+      cursor: pointer;
+    }
+
+    .variable-dropdown:focus {
+      outline: 2px solid #007bff;
+      border-color: #007bff;
+    }
+
+    .loading {
+      position: relative;
+      color: transparent !important;
+    }
+
+    .loading::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 16px;
+      height: 16px;
+      margin: -8px 0 0 -8px;
+      border: 2px solid #ffffff;
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </head>
 
 <body>
   <div id="captcha-container">
-    <!-- Add your CAPTCHA here: -->
-    Hello world!
+    <div id="problem-display">
+      <p>Loading problem...</p>
+    </div>
+    
+    <div id="calculation-display" class="calculation-display" style="display: none;">
+      <strong>Calculation:</strong><br>
+      <small>Select values from the dropdowns below:</small><br>
+      <span id="calculation-formula"></span>
+      <div id="calculation-result" style="margin-top: 15px; padding: 10px; background: #e3f2fd; border-radius: 4px;">
+        <strong>Result: <span id="result-value">0</span></strong>
+      </div>
+    </div>
 
-    <!-- We've added a sample button. Feel free to remove it: -->
-    <button id="solve">
-      Solve!
-    </button>
+    <div id="message"></div>
+    
+    <button id="submit-btn" class="submit-btn" disabled>Submit Answer</button>
+    
+    <div id="answer-description" class="answer-description" style="display: none;"></div>
+    
+    <button id="next-btn" class="next-btn" style="display: none;">Complete</button>
+    
   </div>
 
   <script type="text/javascript">
@@ -42,9 +200,340 @@
         window.top.postMessage("success", '*');
       }
 
-      // Your CAPTCHA code goes here, we've added a simple example below:
-      document.getElementById('solve')
-           .addEventListener('click', () => captchaSuccess());
+      function generateRandomValue(min = 1, max = 200) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function formatUSD(value) {
+        return `$${value.toFixed(2)}`;
+      }
+
+      function replaceVariables(text, variables) {
+        let result = text;
+        for (const [name, value] of Object.entries(variables)) {
+          const regex = new RegExp(`\\$${name}\\$`, 'g');
+          result = result.replace(regex, value);
+        }
+        return result;
+      }
+
+      function renderCalculation(answerArray, variableValues) {
+        function renderPart(part) {
+          if (Array.isArray(part)) {
+            return `(${part.map(renderPart).join(' ')})`;
+          } else if (typeof part === 'string') {
+            const operators = ['ADD', 'SUBTRACT', 'MULTIPLY', 'DIVIDE'];
+            if (operators.includes(part)) {
+              const operatorSymbols = {
+                'ADD': '+',
+                'SUBTRACT': '-',
+                'MULTIPLY': '×',
+                'DIVIDE': '÷'
+              };
+              return `<strong>${operatorSymbols[part]}</strong>`;
+            } else {
+              return createVariableDropdown(part, variableValues);
+            }
+          }
+          return part;
+        }
+        
+        return answerArray.map(renderPart).join(' ');
+      }
+
+      function shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+      }
+
+      function createVariableDropdown(variableName, variableValues) {
+        const variableEntries = Object.entries(variableValues);
+        const shuffledEntries = shuffleArray(variableEntries);
+        
+        const options = shuffledEntries.map(([name, value]) => {
+          return `<option value="${name}">${value}</option>`;
+        }).join('');
+        
+        return `<select class="variable-dropdown" data-variable="${variableName}"><option value="">-- Select --</option>${options}</select>`;
+      }
+
+      async function loadProblem() {
+        try {
+          const response = await fetch('problems/01.json');
+          const problemData = await response.json();
+          
+          const variableValues = {};
+          problemData.variables.forEach(variable => {
+            const min = variable.min !== undefined ? variable.min : 1;
+            const max = variable.max !== undefined ? variable.max : 200;
+            let value = generateRandomValue(min, max);
+            
+            if (variable.format === 'USD') {
+              variableValues[variable.name] = `<strong>${formatUSD(value)}</strong>`;
+            } else {
+              variableValues[variable.name] = `<strong>${value.toString()}</strong>`;
+            }
+          });
+          
+          const renderedProblem = replaceVariables(problemData.problem, variableValues);
+          
+          document.getElementById('problem-display').innerHTML = 
+            `<div class="problem-text">${renderedProblem}</div>`;
+          
+          const calculationHTML = renderCalculation(problemData.answer, variableValues);
+          document.getElementById('calculation-formula').innerHTML = calculationHTML;
+          document.getElementById('calculation-display').style.display = 'block';
+          
+          addDropdownListeners();
+          calculateResult();
+
+          window.currentProblem = {
+            data: problemData,
+            variables: variableValues
+          };
+          
+        } catch (error) {
+          document.getElementById('problem-display').innerHTML = 
+            '<p class="error">Error loading problem: ' + error.message + '</p>';
+        }
+      }
+
+      async function handleSubmit() {
+        const messageDiv = document.getElementById('message');
+        const submitBtn = document.getElementById('submit-btn');
+        const resultElement = document.getElementById('result-value');
+        const result = resultElement.textContent;
+        
+        if (result === '0' || result === '$0.00') {
+          messageDiv.innerHTML = '<p class="error">Please select values for all variables in the calculation.</p>';
+          const container = document.getElementById('captcha-container');
+          container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+          return;
+        }
+        
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
+        submitBtn.textContent = 'Validating...';
+        messageDiv.innerHTML = '<p>Checking your answer...</p>';
+        
+        const container = document.getElementById('captcha-container');
+        container.scrollTo({ top: container.scrollHeight, behavior: 'smooth' });
+        
+        try {
+          await new Promise(resolve => setTimeout(resolve, 3000));
+          
+          const isCorrect = validateAnswer();
+          
+          if (isCorrect) {
+            submitBtn.style.display = 'none';
+            
+            messageDiv.innerHTML = '<p class="success">Correct! Well done!</p>';
+            
+            const answerDescriptionDiv = document.getElementById('answer-description');
+            if (window.currentProblem && window.currentProblem.data.answer_description) {
+              let descriptionText = window.currentProblem.data.answer_description;
+              for (const [name, value] of Object.entries(window.currentProblem.variables)) {
+                const regex = new RegExp(`\\$${name}\\$`, 'g');
+                descriptionText = descriptionText.replace(regex, value);
+              }
+              
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = descriptionText;
+              
+              const calculateElements = tempDiv.querySelectorAll('[data-calculate="true"]');
+              calculateElements.forEach(element => {
+                try {
+                  const calculationArray = JSON.parse(element.textContent);
+                  
+                  const numericVariables = {};
+                  for (const [name, formattedValue] of Object.entries(window.currentProblem.variables)) {
+                    numericVariables[name] = extractNumericValue(formattedValue);
+                  }
+                  
+                  const result = evaluateCalculation(calculationArray, numericVariables);
+                  
+                  if (element.dataset.format === 'USD') {
+                    element.textContent = formatUSD(result);
+                  } else {
+                    element.textContent = result.toFixed(0);
+                  }
+                } catch (error) {
+                  console.error('Error calculating value:', error);
+                  element.textContent = 'Error';
+                }
+              });
+              
+              const answerElements = tempDiv.querySelectorAll('[data-answer="true"]');
+              answerElements.forEach(element => {
+                const finalAnswer = evaluateCalculationWithOriginalVariables();
+                if (window.currentProblem.data.answer_format === 'USD') {
+                  element.textContent = formatUSD(finalAnswer);
+                } else {
+                  element.textContent = finalAnswer.toFixed(2);
+                }
+              });
+              
+              answerDescriptionDiv.innerHTML = tempDiv.innerHTML;
+              answerDescriptionDiv.style.display = 'block';
+              
+              messageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+            
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.style.display = 'block';
+            
+          } else {
+            messageDiv.innerHTML = '<p class="error">Incorrect. Please try again.</p>';
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('loading');
+            submitBtn.textContent = 'Submit Answer';
+          }
+          
+        } catch (error) {
+          messageDiv.innerHTML = '<p class="error">Error validating answer. Please try again.</p>';
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('loading');
+          submitBtn.textContent = 'Submit Answer';
+        }
+      }
+
+      function validateAnswer() {
+        if (!window.currentProblem || !window.currentProblem.data) {
+          return false;
+        }
+        
+        const correctResult = evaluateCalculationWithOriginalVariables();
+        const userResult = getCurrentResult();
+        
+        const tolerance = 0.01;
+        return Math.abs(correctResult - userResult) < tolerance;
+      }
+
+      function evaluateCalculationWithOriginalVariables() {
+        if (!window.currentProblem || !window.currentProblem.data) {
+          return 0;
+        }
+        
+        const selectedValues = {};
+        const dropdowns = document.querySelectorAll('.variable-dropdown');
+        dropdowns.forEach(dropdown => {
+          const variableName = dropdown.dataset.variable;
+          selectedValues[variableName] = extractNumericValue(window.currentProblem.variables[variableName]);
+        });
+        
+        return evaluateCalculation(window.currentProblem.data.answer, selectedValues);
+      }
+
+      function getCurrentResult() {
+        const resultElement = document.getElementById('result-value');
+        const resultText = resultElement.textContent;
+        
+        const numericValue = parseFloat(resultText.replace(/[$,]/g, ''));
+        return isNaN(numericValue) ? 0 : numericValue;
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        loadProblem();
+        
+        document.getElementById('submit-btn').addEventListener('click', handleSubmit);
+        document.getElementById('next-btn').addEventListener('click', captchaSuccess);
+      });
+
+      function addDropdownListeners() {
+        const dropdowns = document.querySelectorAll('.variable-dropdown');
+        dropdowns.forEach(dropdown => {
+          dropdown.addEventListener('change', function() {
+            calculateResult();
+          });
+        });
+      }
+
+      function calculateResult() {
+        const dropdowns = document.querySelectorAll('.variable-dropdown');
+        const selectedValues = {};
+        let allSelected = true;
+        
+        dropdowns.forEach(dropdown => {
+          const variableName = dropdown.dataset.variable;
+          const selectedVariable = dropdown.value;
+          
+          if (selectedVariable && window.currentProblem && window.currentProblem.variables) {
+            const displayValue = window.currentProblem.variables[selectedVariable];
+            const numericValue = extractNumericValue(displayValue);
+            selectedValues[variableName] = numericValue;
+          } else {
+            selectedValues[variableName] = 0;
+            allSelected = false;
+          }
+        });
+
+        const submitBtn = document.getElementById('submit-btn');
+        submitBtn.disabled = !allSelected;
+        
+        if (window.currentProblem && window.currentProblem.data) {
+          const result = evaluateCalculation(window.currentProblem.data.answer, selectedValues);
+          displayResult(result);
+        }
+      }
+
+      function extractNumericValue(displayValue) {
+        const cleanValue = displayValue.replace(/<[^>]*>/g, '');
+        const numericValue = parseFloat(cleanValue.replace(/[$,]/g, ''));
+        return isNaN(numericValue) ? 0 : numericValue;
+      }
+
+      function evaluateCalculation(answerArray, selectedValues) {
+        function evaluatePart(part) {
+          if (Array.isArray(part)) {
+            const operands = part.map(evaluatePart);
+            const operator = operands[1];
+            
+            switch (operator) {
+              case 'ADD': return operands[0] + operands[2];
+              case 'SUBTRACT': return operands[0] - operands[2];
+              case 'MULTIPLY': return operands[0] * operands[2];
+              case 'DIVIDE': return operands[2] !== 0 ? Math.ceil(operands[0] / operands[2]) : 0;
+              default: return 0;
+            }
+          } else if (typeof part === 'string') {
+            const operators = ['ADD', 'SUBTRACT', 'MULTIPLY', 'DIVIDE'];
+            if (operators.includes(part)) {
+              return part;
+            } else {
+              return selectedValues[part] || 0;
+            }
+          }
+          return part;
+        }
+        
+        const operands = answerArray.map(evaluatePart);
+        const operator = operands[1];
+        
+        switch (operator) {
+          case 'ADD': return operands[0] + operands[2];
+          case 'SUBTRACT': return operands[0] - operands[2];
+          case 'MULTIPLY': return operands[0] * operands[2];
+          case 'DIVIDE': return operands[2] !== 0 ? Math.ceil(operands[0] / operands[2]) : 0;
+          default: return 0;
+        }
+      }
+
+      function displayResult(result) {
+        const resultElement = document.getElementById('result-value');
+        const resultContainer = document.getElementById('calculation-result');
+        
+        if (window.currentProblem && window.currentProblem.data.answer_format === 'USD') {
+          resultElement.textContent = `$${result.toFixed(2)}`;
+        } else {
+          resultElement.textContent = result.toFixed(2);
+        }
+        
+        resultContainer.style.display = 'block';
+      }
 
     })(window, document);
   </script>
