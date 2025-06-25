@@ -7,3 +7,5 @@ A word problem is presented to the user with lots of red herrings. The user must
 * Each value in the word problem is randomly generated on load.
 * The answer calculation is presented to the user, but the user must select the value from a drop down for each variable.
 * All problems are JSON files in [./captcha/problems/](./captcha/problems/) - the answers can be calculated using the answer JSON property in the JSON (nested arrays are calculated first).
+
+Try it out here: [https://w3cj.github.io/kitboga-codejam25-word-problem-captcha/](https://w3cj.github.io/kitboga-codejam25-word-problem-captcha/)
