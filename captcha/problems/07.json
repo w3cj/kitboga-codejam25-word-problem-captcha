@@ -1,0 +1,18 @@
+{
+  "problem": "A meticulous old farmer has a new system for sorting his harvested corn cobs into $NUM_BINS$ bins: \"Prime\" and \"Feed.\" His manager insists that for every $PRIME_COBS_PER_TRIP$ \"Prime\" cobs he sorts, he must immediately pause his work, walk a $TRIP_DURATION_SECONDS$-second round trip to the barn office, and redeem a work voucher. The system is very strict; if he happens to sort a lower-quality \"Feed\" cob while he has an un-redeemed voucher in his pocket, he is penalized $PENALTY_COBS$ cobs from his \"Prime\" count. On Tuesday morning, the farmer began sorting a large crate and found that the first $TOTAL_PRIME_COBS_SORTED$ cobs he picked were all \"Prime\" quality, but the $FEED_COB_POSITION$th cob was for \"Feed.\" How many successful trips to the barn office did the farmer make that morning?",
+  "variables": [
+    { "name": "TOTAL_PRIME_COBS_SORTED", "min": 100, "max": 250, "label": "cobs" },
+    { "name": "PRIME_COBS_PER_TRIP", "min": 15, "max": 25, "label": "cobs/trip" },
+    { "name": "PENALTY_COBS", "min": 5, "max": 10, "label": "cobs" },
+    { "name": "TRIP_DURATION_SECONDS", "min": 60, "max": 120, "label": "seconds" },
+    { "name": "FEED_COB_POSITION", "min": 101, "max": 251, "label": "cob position" },
+    { "name": "NUM_BINS", "min": 2, "max": 2, "label": "bins" }
+  ],
+  "answer": [
+    "TOTAL_PRIME_COBS_SORTED",
+    "DIVIDE",
+    "PRIME_COBS_PER_TRIP"
+  ],
+  "answer_format": "TRIPS",
+  "answer_description": "<ol><li><strong>Identify the total prime cobs sorted:</strong> The problem states the farmer sorted $TOTAL_PRIME_COBS_SORTED$ \"Prime\" cobs before the process was interrupted.</li><li><strong>Identify the requirement per trip:</strong> The farmer must make a trip for every $PRIME_COBS_PER_TRIP$ \"Prime\" cobs sorted.</li><li><strong>Calculate the number of completed trips:</strong> Divide the total number of prime cobs by the number required per trip. The question asks for 'successful trips', so we only consider the whole number result of the division.<ul><li>$TOTAL_PRIME_COBS_SORTED$ cobs ÷ $PRIME_COBS_PER_TRIP$ cobs/trip = <strong data-answer=\"true\"></strong></li></ul></li></ol>"
+}

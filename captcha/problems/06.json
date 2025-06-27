@@ -1,0 +1,18 @@
+{
+  "problem": "Nevaeh was baking a complex $NUM_LAYERS$-layer birthday cake for her brother, Chad, a task she estimated would take $TOTAL_ESTIMATED_TIME$ minutes from start to finish. Her parrot, who loves shiny objects, perfectly mimics the sound of the microwave timer, which she set to go off every $TIMER_INTERVAL$ minutes to remind her to check the oven temperature. After working for exactly $TIME_WORKED$ minutes, she received a text message and completely forgot about the cake, leaving the kitchen to watch videos on her phone. The recipe called for exactly $SPRINKLES_COUNT$ sprinkles for decoration and $CUPS_OF_FLOUR$ cups of flour. Based on the time she was actually in the kitchen, how many times did she hear the parrot mimic the timer?",
+  "variables": [
+    { "name": "TIME_WORKED", "min": 20, "max": 60, "label": "minutes" },
+    { "name": "TIMER_INTERVAL", "min": 2, "max": 5, "label": "minutes" },
+    { "name": "NUM_LAYERS", "min": 3, "max": 7, "label": "layers" },
+    { "name": "TOTAL_ESTIMATED_TIME", "min": 90, "max": 120, "label": "minutes" },
+    { "name": "SPRINKLES_COUNT", "min": 1000, "max": 5000, "label": "sprinkles" },
+    { "name": "CUPS_OF_FLOUR", "min": 2, "max": 6, "label": "cups" }
+  ],
+  "answer": [
+    "TIME_WORKED", 
+    "DIVIDE", 
+    "TIMER_INTERVAL"
+  ],
+  "answer_format": "TIMES",
+  "answer_description": "<ol><li><strong>Identify the relevant time period:</strong> The problem asks how many times she heard the timer while she was working, which was for $TIME_WORKED$ minutes.</li><li><strong>Identify the frequency of the sound:</strong> The parrot (and the timer) made a sound every $TIMER_INTERVAL$ minutes.</li><li><strong>Calculate the number of times:</strong> Divide the total time she worked by the interval between each sound.<ul><li>$TIME_WORKED$ minutes ÷ $TIMER_INTERVAL$ minutes = <strong data-answer=\"true\"></strong></li></ul></li></ol>"
+}

@@ -1,0 +1,17 @@
+{
+  "problem": "Richard is in charge of filling the plant's massive Steam Reservoir, which has a capacity of over one million gallons and powers the main generator. At the start of his shift, an automated system deposited $INITIAL_WATER$ gallons of purified water into the reservoir. His job is to confirm receipt of the water by running a series of $NUMBER_OF_CHECKS$ diagnostic checks on the system's virtual control panel. However, a known system glitch causes a loss of $LOSS_PER_CHECK$ gallons of water from the reservoir every time he completes a diagnostic check. His supervisor, Kyle, also warned him that any system errors logged during the checks would result in a $FINE_AMOUNT$ fine from the main office. The entire process, from the initial deposit to the final check, took him exactly $PROCESS_DURATION$ minutes to complete. How many gallons of water were left in the Steam Reservoir after he finished all his checks?",
+  "variables": [
+    { "name": "INITIAL_WATER", "min": 2000, "max": 5000, "label": "gallons" },
+    { "name": "NUMBER_OF_CHECKS", "min": 10, "max": 25, "label": "checks" },
+    { "name": "LOSS_PER_CHECK", "min": 20, "max": 50, "label": "gallons per check" },
+    { "name": "FINE_AMOUNT", "min": 25, "max": 100, "format": "USD", "label": "fine" },
+    { "name": "PROCESS_DURATION", "min": 60, "max": 120, "label": "minutes" }
+  ],
+  "answer": [
+    "INITIAL_WATER",
+    "SUBTRACT",
+    [ "NUMBER_OF_CHECKS", "MULTIPLY", "LOSS_PER_CHECK" ]
+  ],
+  "answer_format": "GALLONS",
+  "answer_description": "<ol><li><strong>Calculate the total water lost:</strong> First, find out how much water was lost in total by multiplying the number of checks by the amount of water lost per check.<ul><li>$NUMBER_OF_CHECKS$ checks × $LOSS_PER_CHECK$ gallons/check = <strong><span data-calculate=\"true\">[\"NUMBER_OF_CHECKS\", \"MULTIPLY\", \"LOSS_PER_CHECK\"]</span> gallons</strong>.</li></ul></li><li><strong>Determine the remaining water:</strong> Subtract the total water lost from the initial amount of water in the reservoir. The potential fine ($FINE_AMOUNT$) and the time taken ($PROCESS_DURATION$) are extra information not needed for the calculation.<ul><li>$INITIAL_WATER$ gallons - <span data-calculate=\"true\">[\"NUMBER_OF_CHECKS\", \"MULTIPLY\", \"LOSS_PER_CHECK\"]</span> gallons = <strong data-answer=\"true\"></strong></li></ul></li></ol>"
+}

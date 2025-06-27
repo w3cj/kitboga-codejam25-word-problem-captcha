@@ -1,0 +1,19 @@
+{
+  "problem": "At a community fundraiser with over $ATTENDEES$ attendees, Mrs. Edna was in charge of collecting $INITIAL_VOUCHER_COUNT$ special donation vouchers, each worth a value of $VOUCHER_VALUE$. The event's ambitious goal was to raise over one million dollars for a new town hall, and the entire fundraiser was scheduled to last exactly $FUNDRAISER_DURATION$ minutes. Before finding the manager to turn them in, she stopped at the snack table to buy a $PIE_COST$ pie for her grandson, Chad. The busy cashier accepted $VOUCHERS_USED$ of her donation vouchers to cover the cost of the pie and gave her $CHANGE_RECEIVED$ back in change. What was the total monetary value of the vouchers Edna was able to give to the fundraiser manager?",
+  "variables": [
+    { "name": "INITIAL_VOUCHER_COUNT", "min": 15, "max": 30, "label": "vouchers" },
+    { "name": "VOUCHER_VALUE", "min": 5, "max": 25, "format": "USD", "label": "per voucher" },
+    { "name": "VOUCHERS_USED", "min": 2, "max": 5, "label": "vouchers used" },
+    { "name": "PIE_COST", "min": 10, "max": 20, "format": "USD", "label": "per pie" },
+    { "name": "CHANGE_RECEIVED", "min": 5, "max": 15, "format": "USD", "label": "change" },
+    { "name": "ATTENDEES", "min": 400, "max": 600, "label": "attendees" },
+    { "name": "FUNDRAISER_DURATION", "min": 60, "max": 120, "label": "minutes" }
+  ],
+  "answer": [
+    ["INITIAL_VOUCHER_COUNT", "SUBTRACT", "VOUCHERS_USED"],
+    "MULTIPLY",
+    "VOUCHER_VALUE"
+  ],
+  "answer_format": "USD",
+  "answer_description": "<ol><li><strong>Determine remaining vouchers:</strong> First, calculate how many vouchers Edna has left after buying the pie. She started with $INITIAL_VOUCHER_COUNT$ and used $VOUCHERS_USED$.<ul><li>$INITIAL_VOUCHER_COUNT$ - $VOUCHERS_USED$ = <strong><span data-calculate=\"true\">[\"INITIAL_VOUCHER_COUNT\", \"SUBTRACT\", \"VOUCHERS_USED\"]</span> vouchers</strong>.</li></ul></li><li><strong>Calculate the final value:</strong> Multiply the number of remaining vouchers by the value of each voucher.<ul><li><span data-calculate=\"true\">[\"INITIAL_VOUCHER_COUNT\", \"SUBTRACT\", \"VOUCHERS_USED\"]</span> vouchers × $VOUCHER_VALUE$/voucher = <strong data-answer=\"true\"></strong></li></ul></li></ol>"
+}

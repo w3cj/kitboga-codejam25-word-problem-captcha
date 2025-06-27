@@ -1,0 +1,17 @@
+{
+  "problem": "Viktor, a meticulous security archivist, was tasked with digitally scanning historical records from a vault containing over one million documents. To begin his work each morning, he had to connect to a secure server, a process that involved a mandatory $HANDSHAKE_DURATION_SECONDS$-second security handshake. Each successful connection allowed him to scan a batch of exactly $RECORDS_PER_BATCH$ records before the system automatically logged him out. His department had a strict policy: for every failed connection attempt, a penalty of $PENALTY_FEE$ would be deducted from his project's budget of $PROJECT_BUDGET$. On Tuesday, he had a perfect day with no failed connections, managing to scan a total of $TOTAL_RECORDS_SCANNED$ records by the afternoon. What was the total time he spent waiting for the security handshakes to complete that day?",
+  "variables": [
+    { "name": "HANDSHAKE_DURATION_SECONDS", "min": 60, "max": 120, "label": "seconds" },
+    { "name": "RECORDS_PER_BATCH", "min": 50, "max": 100, "label": "records" },
+    { "name": "TOTAL_RECORDS_SCANNED", "min": 300, "max": 900, "label": "records" },
+    { "name": "PENALTY_FEE", "min": 25, "max": 100, "label": "", "format": "USD" },
+    { "name": "PROJECT_BUDGET", "min": 2000, "max": 5000, "label": "", "format": "USD" }
+  ],
+  "answer": [
+    [ "TOTAL_RECORDS_SCANNED", "DIVIDE", "RECORDS_PER_BATCH" ],
+    "MULTIPLY",
+    "HANDSHAKE_DURATION_SECONDS"
+  ],
+  "answer_format": "SECONDS",
+  "answer_description": "<ol><li><strong>Calculate the number of connections:</strong> First, determine how many times Viktor had to connect to the server to scan all the records.<ul><li>$TOTAL_RECORDS_SCANNED$ records ÷ $RECORDS_PER_BATCH$ records/connection = <strong><span data-calculate=\"true\">[\"TOTAL_RECORDS_SCANNED\", \"DIVIDE\", \"RECORDS_PER_BATCH\"]</span> connections</strong>.</li></ul></li><li><strong>Calculate the total handshake time:</strong> Multiply the number of connections by the duration of each security handshake.<ul><li><span data-calculate=\"true\">[\"TOTAL_RECORDS_SCANNED\", \"DIVIDE\", \"RECORDS_PER_BATCH\"]</span> connections × $HANDSHAKE_DURATION_SECONDS$ seconds/connection = <strong data-answer=\"true\"></strong></li></ul></li></ol>"
+}

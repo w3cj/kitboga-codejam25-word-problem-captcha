@@ -1,0 +1,25 @@
+{
+  "problem": "An elderly woman was buying $NUM_ITEMS$ items at the store: a $COFFEE_PRICE$ bag of specialty coffee, a $MILK_PRICE$ carton of milk, and a $NEWSPAPER_PRICE$ newspaper. At the register, she paused to carefully check her purse for coupons, a process which took a total of $TOTAL_DELAY_SECONDS$ seconds. The polite but noticeably impatient cashier had a verbal tic, saying the word \"Ma'am\" to get her attention for every $TIC_INTERVAL_SECONDS$ seconds that she delayed. She eventually found two coupons—one for $COUPON_DISCOUNT_PERCENT$% off any single item over $COUPON_THRESHOLD_PRICE$ and a store credit of $CREDIT_PER_BEANS$ for every $BEANS_FOR_CREDIT$ beans in the coffee bag, which contained $TOTAL_BEANS$ beans. After she finally paid the discounted price, the cashier’s computer froze for a full $FREEZE_TIME_MINUTES$ minute(s), forcing them both to wait in awkward silence. How many times did the woman hear the word \"Ma'am\"?",
+  "variables": [
+    { "name": "TOTAL_DELAY_SECONDS", "min": 120, "max": 300, "label": "seconds" },
+    { "name": "TIC_INTERVAL_SECONDS", "min": 5, "max": 15, "label": "seconds" },
+    { "name": "NUM_ITEMS", "min": 3, "max": 3, "label": "items" },
+    { "name": "COFFEE_PRICE", "min": 12, "max": 20, "label": "coffee", "format": "USD" },
+    { "name": "MILK_PRICE", "min": 5, "max": 8, "label": "milk", "format": "USD" },
+    { "name": "NEWSPAPER_PRICE", "min": 3, "max": 6, "label": "newspaper", "format": "USD" },
+    { "name": "COUPON_DISCOUNT_PERCENT", "min": 15, "max": 25, "label": "%" },
+    { "name": "COUPON_THRESHOLD_PRICE", "min": 10, "max": 15, "label": "coupon threshold", "format": "USD" },
+    { "name": "CREDIT_PER_BEANS", "min": 1, "max": 2, "label": "credit per bean", "format": "USD" },
+    { "name": "BEANS_FOR_CREDIT", "min": 40, "max": 60, "label": "beans" },
+    { "name": "TOTAL_BEANS", "min": 150, "max": 250, "label": "beans" },
+    { "name": "FREEZE_TIME_MINUTES", "min": 1, "max": 2, "label": "minute(s)" }
+  ],
+  "answer": [
+    "TOTAL_DELAY_SECONDS",
+    "DIVIDE",
+    "TIC_INTERVAL_SECONDS"
+  ],
+  "answer_format": "TIMES",
+  "rounding": "floor",
+  "answer_description": "<ol><li><strong>Identify the relevant time period:</strong> The question is about the time the woman spent searching her purse, which the problem states was $TOTAL_DELAY_SECONDS$ seconds.</li><li><strong>Calculate the number of times the word was said:</strong> Divide the total delay by the interval of the cashier's tic.<ul><li>$TOTAL_DELAY_SECONDS$ seconds ÷ $TIC_INTERVAL_SECONDS$ seconds = <strong data-answer=\"true\"></strong></li></ul></li></ol>"
+}

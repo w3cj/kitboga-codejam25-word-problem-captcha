@@ -1,0 +1,17 @@
+{
+  "problem": "Old Man Jebediah needed to transport $TOTAL_BASKETS$ full baskets of apples from his orchard, which produced over a million apples this season, to the main barn. His new manager insisted that each basket must contain exactly $APPLES_PER_BASKET$ apples, and he could only move the baskets in his cart $BASKETS_PER_TRIP$ at a time. Unfortunately, the main path was blocked by geese, forcing him to take a detour that added exactly $EXTRA_TIME_PER_TRIP$ minutes to each one-way trip. Since he also had to return to the orchard with an empty cart, each full delivery cycle involved $ROUND_TRIP_MULTIPLIER$ separate journeys (one to the barn and one back), and the detour affected both. What was the total amount of extra time Jebediah spent traveling that day because of the geese?",
+  "variables": [
+    { "name": "TOTAL_BASKETS", "min": 20, "max": 60, "label": "baskets" },
+    { "name": "BASKETS_PER_TRIP", "min": 2, "max": 5, "label": "baskets per trip" },
+    { "name": "EXTRA_TIME_PER_TRIP", "min": 3, "max": 10, "label": "minutes per journey" },
+    { "name": "ROUND_TRIP_MULTIPLIER", "min": 2, "max": 2, "label": "journeys per cycle" },
+    { "name": "APPLES_PER_BASKET", "min": 30, "max": 50, "label": "apples per basket" }
+  ],
+  "answer": [
+    [ "TOTAL_BASKETS", "DIVIDE", "BASKETS_PER_TRIP" ],
+    "MULTIPLY",
+    [ "ROUND_TRIP_MULTIPLIER", "MULTIPLY", "EXTRA_TIME_PER_TRIP" ]
+  ],
+  "answer_format": "MINUTES",
+  "answer_description": "<ol><li><strong>Calculate the number of delivery cycles:</strong> First, find out how many trips Jebediah needed to make to transport all the baskets.<ul><li>$TOTAL_BASKETS$ baskets ÷ $BASKETS_PER_TRIP$ baskets/cycle = <strong><span data-calculate=\"true\">[\"TOTAL_BASKETS\", \"DIVIDE\", \"BASKETS_PER_TRIP\"]</span> cycles</strong>.</li></ul></li><li><strong>Calculate the total number of affected journeys:</strong> Each delivery cycle had $ROUND_TRIP_MULTIPLIER$ journeys (to the barn and back).<ul><li><span data-calculate=\"true\">[\"TOTAL_BASKETS\", \"DIVIDE\", \"BASKETS_PER_TRIP\"]</span> cycles × $ROUND_TRIP_MULTIPLIER$ journeys/cycle = <strong><span data-calculate=\"true\">[[\"TOTAL_BASKETS\", \"DIVIDE\", \"BASKETS_PER_TRIP\"], \"MULTIPLY\", \"ROUND_TRIP_MULTIPLIER\"]</span> journeys</strong>.</li></ul></li><li><strong>Find the total extra time:</strong> Multiply the total number of affected journeys by the extra minutes each one took.<ul><li><span data-calculate=\"true\">[[\"TOTAL_BASKETS\", \"DIVIDE\", \"BASKETS_PER_TRIP\"], \"MULTIPLY\", \"ROUND_TRIP_MULTIPLIER\"]</span> journeys × $EXTRA_TIME_PER_TRIP$ minutes/journey = <strong data-answer=\"true\"></strong></li></ul></li></ol>"
+}
