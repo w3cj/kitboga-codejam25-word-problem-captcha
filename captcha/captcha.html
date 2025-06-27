@@ -275,7 +275,7 @@
     const CONFIG = {
       SUBMIT_DELAY: 3000, // the time to wait before displaying the result
       AVAILABLE_PROBLEM_COUNT: 8, // the number problem json files available
-      PROBLEM_ID: 5, // sets a static problem id to load, 0 = random
+      PROBLEM_ID: 0, // sets a static problem id to load, 0 = random
     };
 
     const LABELS = {
@@ -573,9 +573,39 @@
         }
       }
 
+      function getNextRandomProblemIndex() {
+        const key = 'shownProblems';
+        const countKey = 'problemCount';
+        const availableCount = CONFIG.AVAILABLE_PROBLEM_COUNT;
+        let shown = [];
+        let storedCount = parseInt(localStorage.getItem(countKey));
+        if (storedCount !== availableCount) {
+          localStorage.removeItem(key);
+          localStorage.setItem(countKey, availableCount);
+        } else {
+          try {
+            shown = JSON.parse(localStorage.getItem(key)) || [];
+          } catch (e) {
+            shown = [];
+          }
+        }
+        let pool = [];
+        for (let i = 1; i <= availableCount; i++) {
+          if (!shown.includes(i)) pool.push(i);
+        }
+        if (pool.length === 0) {
+          shown = [];
+          pool = Array.from({length: availableCount}, (_, i) => i + 1);
+        }
+        const index = pool[Math.floor(Math.random() * pool.length)];
+        shown.push(index);
+        localStorage.setItem(key, JSON.stringify(shown));
+        return index;
+      }
+
       async function loadProblem() {
         try {
-          const problemIndex = CONFIG.PROBLEM_ID || generateRandomValue(1, CONFIG.AVAILABLE_PROBLEM_COUNT);
+          const problemIndex = CONFIG.PROBLEM_ID || getNextRandomProblemIndex();
           const response = await fetch(`problems/${problemIndex.toString().padStart(2, '0')}.json`);
           const problemData = await response.json();
           appState.problemData = problemData;
